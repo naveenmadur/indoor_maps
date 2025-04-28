@@ -66,6 +66,17 @@ class IndoorMapPainter extends CustomPainter {
 
         canvas.drawPath(path, paint);
         canvas.drawPath(path, borderPaint);
+
+        // Draw labels
+        _drawTextLabel(
+          canvas,
+          path,
+          polygon,
+          feature?.properties,
+          size,
+          scaleX,
+          scaleY,
+        );
       }
     }
   }
@@ -74,7 +85,7 @@ class IndoorMapPainter extends CustomPainter {
   Paint _getPaint(Map<String, dynamic>? properties) {
     final paint = Paint()..style = PaintingStyle.fill;
     if (properties == null) {
-      paint.color = Colors.blueAccent.withValues(alpha: 0.5);
+      paint.color = Colors.blueAccent.withOpacity(0.5); // Default
     } else if (properties['type'] == 'desk') {
       if (properties['occupied'] == true) {
         paint.color = Colors.redAccent;
@@ -89,9 +100,61 @@ class IndoorMapPainter extends CustomPainter {
       paint.color = Colors.green.shade100;
       paint.style = PaintingStyle.stroke;
     } else {
-      paint.color = Colors.blueAccent.withValues(alpha: 0.5);
+      paint.color = Colors.blueAccent.withOpacity(0.5); // Default
     }
     return paint;
+  }
+
+  void _drawTextLabel(
+      Canvas canvas,
+      Path path,
+      GeoJSONPolygon polygon,
+      Map<String, dynamic>? properties,
+      Size size,
+      double scaleX,
+      double scaleY) {
+    // Added polygon
+    if (properties == null || properties['name'] == null) return;
+
+    final String name = properties['name'];
+    final TextPainter textPainter = TextPainter(
+      text: TextSpan(
+        text: name,
+        style: const TextStyle(
+          color: Colors.black, // Label color
+          fontSize: 12, // Label font size
+        ),
+      ),
+      textDirection: TextDirection.ltr,
+    );
+    textPainter.layout();
+
+    // Calculate the centroid of the polygon
+    Offset? centroid =
+        _calculatePolygonCentroid(polygon, scaleX, scaleY); // Use the polygon
+    if (centroid == null) return;
+
+    textPainter.paint(canvas, centroid);
+  }
+
+  Offset? _calculatePolygonCentroid(
+      GeoJSONPolygon polygon, double scaleX, double scaleY) {
+    // Changed to use GeoJSONPolygon
+    double xSum = 0;
+    double ySum = 0;
+    int count = 0;
+
+    for (final ring in polygon.coordinates) {
+      for (final point in ring) {
+        final x = point[0] * scaleX; // Apply scale here
+        final y = point[1] * scaleY;
+        xSum += x;
+        ySum += y;
+        count++;
+      }
+    }
+    if (count == 0) return null;
+    return Offset(xSum / count, ySum / count);
   }
 
   @override

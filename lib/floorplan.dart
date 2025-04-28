@@ -86,7 +86,7 @@ final geoJsonMap = {
     // Workspace Area Boundary
     {
       "type": "Feature",
-      "properties": {"name": "Workspace Area", "type": "boundary"},
+      "properties": {"name": "", "type": "boundary"},
       "geometry": {
         "type": "Polygon",
         "coordinates": [
