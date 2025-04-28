@@ -158,7 +158,7 @@ final geoJsonMap = {
     // Individual Desks (Example Layout)
     {
       "type": "Feature",
-      "properties": {"name": "Desk 1", "type": "desk"},
+      "properties": {"name": "Desk 1", "type": "desk", "occupied": true},
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -174,7 +174,7 @@ final geoJsonMap = {
     },
     {
       "type": "Feature",
-      "properties": {"name": "Desk 2", "type": "desk"},
+      "properties": {"name": "Desk 2", "type": "desk", "occupied": true},
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -190,7 +190,7 @@ final geoJsonMap = {
     },
     {
       "type": "Feature",
-      "properties": {"name": "Desk 3", "type": "desk"},
+      "properties": {"name": "Desk 3", "type": "desk", "occupied": true},
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -206,7 +206,7 @@ final geoJsonMap = {
     },
     {
       "type": "Feature",
-      "properties": {"name": "Desk 4", "type": "desk"},
+      "properties": {"name": "Desk 4", "type": "desk", "occupied": true},
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -222,7 +222,7 @@ final geoJsonMap = {
     },
     {
       "type": "Feature",
-      "properties": {"name": "Desk 5", "type": "desk"},
+      "properties": {"name": "Desk 5", "type": "desk", "occupied": true},
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -238,7 +238,7 @@ final geoJsonMap = {
     },
     {
       "type": "Feature",
-      "properties": {"name": "Desk 6", "type": "desk"},
+      "properties": {"name": "Desk 6", "type": "desk", "occupied": true},
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -254,7 +254,7 @@ final geoJsonMap = {
     },
     {
       "type": "Feature",
-      "properties": {"name": "Desk 7", "type": "desk"},
+      "properties": {"name": "Desk 7", "type": "desk", "occupied": true},
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -270,7 +270,7 @@ final geoJsonMap = {
     },
     {
       "type": "Feature",
-      "properties": {"name": "Desk 8", "type": "desk"},
+      "properties": {"name": "Desk 8", "type": "desk", "occupied": true},
       "geometry": {
         "type": "Polygon",
         "coordinates": [

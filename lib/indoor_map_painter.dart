@@ -34,10 +34,7 @@ class IndoorMapPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final scaleX = size.width / mapWidth;
     final scaleY = size.height / mapHeight;
-    final paint = Paint()
-      ..color = Colors.blueAccent.withValues(alpha: 0.5)
-      ..style = PaintingStyle.fill;
-
+    //final paint = Paint()..style = PaintingStyle.fill; // Removed default color from here
     final borderPaint = Paint()
       ..color = Colors.black
       ..strokeWidth = 2
@@ -64,11 +61,37 @@ class IndoorMapPainter extends CustomPainter {
           }
           path.close();
         }
+        // Set color based on properties, default color is applied.
+        final paint = _getPaint(feature?.properties);
 
         canvas.drawPath(path, paint);
         canvas.drawPath(path, borderPaint);
       }
     }
+  }
+
+  //helper function to get paint color.
+  Paint _getPaint(Map<String, dynamic>? properties) {
+    final paint = Paint()..style = PaintingStyle.fill;
+    if (properties == null) {
+      paint.color = Colors.blueAccent.withValues(alpha: 0.5);
+    } else if (properties['type'] == 'desk') {
+      if (properties['occupied'] == true) {
+        paint.color = Colors.redAccent;
+      } else {
+        paint.color = Colors.greenAccent;
+      }
+    } else if (properties['type'] == 'room') {
+      paint.color = Colors.lightBlue.shade100;
+    } else if (properties['type'] == 'aisle') {
+      paint.color = Colors.grey.shade300;
+    } else if (properties['type'] == 'boundary') {
+      paint.color = Colors.green.shade100;
+      paint.style = PaintingStyle.stroke;
+    } else {
+      paint.color = Colors.blueAccent.withValues(alpha: 0.5);
+    }
+    return paint;
   }
 
   @override
