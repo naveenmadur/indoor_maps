@@ -24,9 +24,6 @@ class _IndoorMapScreenState extends State<IndoorMapScreen> {
   }
 
   Future<void> _loadGeoJson() async {
-    // final rawData = await rootBundle.loadString('floorplan.dart');
-    // final data = json.decode(rawData);
-
     try {
       final collection = GeoJSONFeatureCollection.fromMap(geoJsonMap);
       setState(() {
