@@ -85,7 +85,7 @@ class IndoorMapPainter extends CustomPainter {
   Paint _getPaint(Map<String, dynamic>? properties) {
     final paint = Paint()..style = PaintingStyle.fill;
     if (properties == null) {
-      paint.color = Colors.blueAccent.withOpacity(0.5); // Default
+      paint.color = Colors.blueAccent.withValues(alpha: 0.5);
     } else if (properties['type'] == 'desk') {
       if (properties['occupied'] == true) {
         paint.color = Colors.redAccent;
@@ -100,7 +100,7 @@ class IndoorMapPainter extends CustomPainter {
       paint.color = Colors.green.shade100;
       paint.style = PaintingStyle.stroke;
     } else {
-      paint.color = Colors.blueAccent.withOpacity(0.5); // Default
+      paint.color = Colors.blueAccent.withValues(alpha: 0.5);
     }
     return paint;
   }
